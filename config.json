@@ -1,0 +1,19 @@
+{
+    "root": "https://opensource.apple.com",
+    "interval": 6,
+    "products":[ 
+        "https://opensource.apple.com/release/macos-10152.html", 
+        "https://opensource.apple.com/release/macos-10151.html"         
+    ],
+    "ignore-components":false,
+    "components":[
+        {"macos-10152": [
+            "xnu",
+            "IOFireWireAVC"
+        ]},
+        {"macos-10151": [
+            "IOKitUser",
+            "IOFireWireIP"
+        ]}
+    ]
+}
