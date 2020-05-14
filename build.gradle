@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    maven() 
+}
+
+dependencies {
+     
+}
+
+mainClassName = 'bw.mitp0sh.gath.GathConsole'
