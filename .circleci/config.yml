@@ -22,12 +22,14 @@ jobs:
           command: |
             echo "There we go..."
             ./gradlew build
+            pwd
             ls -la
             cd build
             ls -la
             cd libs
             ls -la
-            java -jar build/libs/gath.jar
+            chmod +x ./gath.jar
+            java -jar ./gath.jar
 
 workflows:
   version: 2
