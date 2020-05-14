@@ -1,7 +1,5 @@
 version: 2
 jobs:
-  deploy:
-    working_directory: ~/test
   build:        
     working_directory: ~/test
     parallelism: 2
@@ -26,4 +24,3 @@ workflows:
   build:
     jobs:
       - build
-      
