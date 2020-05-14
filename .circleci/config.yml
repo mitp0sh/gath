@@ -18,6 +18,7 @@ jobs:
           name: Rolling on chrome...
           command: |
             echo 'test'
+            ./gradlew build
 
 workflows:
   version: 2
