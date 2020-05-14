@@ -1,8 +1,7 @@
 version: 2
 jobs:
   build:        
-    working_directory: ~/test
-    parallelism: 2
+    working_directory: ~/gath
     environment:      
       _JAVA_OPTIONS: "-Xmx3g -Djdk.module.illegalAccess=deny"
       _JAVAC_OPTIONS: "-Xlint:unchecked -Xlint:deprecation"
@@ -19,9 +18,9 @@ jobs:
           name: ensure gradlew is executable...
           command: chmod +x ./gradlew
       - run:
-          name: Rolling on chrome...
+          name: Starting real build process...
           command: |
-            echo 'test'
+            echo "There we go..."
             ./gradlew build
 
 workflows:
