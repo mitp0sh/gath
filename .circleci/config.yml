@@ -22,7 +22,10 @@ jobs:
           command: |
             echo "There we go..."
             ./gradlew build
-      - run: java -jar build/libs/gath-all.jar
+            ls -la
+            cd build
+            ls -la
+            java -jar build/libs/gath-all.jar
 
 workflows:
   version: 2
