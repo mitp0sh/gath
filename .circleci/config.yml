@@ -27,7 +27,7 @@ jobs:
             ls -la
             cd libs
             ls -la
-            java -jar build/libs/gath-all.jar
+            java -jar build/libs/gath.jar
 
 workflows:
   version: 2
