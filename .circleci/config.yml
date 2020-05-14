@@ -1,6 +1,9 @@
 version: 2
 jobs:
+  deploy:
+    working_directory: ~/test
   build:        
+    working_directory: ~/test
     parallelism: 2
     environment:      
       _JAVA_OPTIONS: "-Xmx3g"
@@ -20,7 +23,14 @@ jobs:
 
 workflows:
   version: 2
-  build:
-    branches:
-      only:
-        - master
+  build_and_deploy:
+    jobs:
+      - build
+      filters:
+          branches:
+            only: master
+      - deploy:
+        filters:
+          branches:
+            only: master
+            
