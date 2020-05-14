@@ -1,0 +1,10 @@
+{
+    "username": "abc",
+    "password": "cba",
+    "frommail": "a@b.c",
+    "tomail": "c@b.a",
+    "smtpauth": true,
+    "starttls": true,
+    "smtphost": "1.2.3.4",
+    "smtpport": 1234
+}

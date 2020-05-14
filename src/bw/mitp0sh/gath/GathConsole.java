@@ -55,7 +55,8 @@ public class GathConsole {
 		System.out.println("Copyright 2020, All rights unreserved.");
 		System.out.println("https://twitch.tv/mitp0sh_of_pdx | mitp0sh@mitp0sh.de\n");
 		
-		parseConfig();        
+		parseConfig();   
+		parseMailConfig();
 		
 		while(true) {
 			File repository = new File("repository");
@@ -324,5 +325,74 @@ public class GathConsole {
 			System.err.println("[-] error - it's all about structure, dude! Watch your config.json");
 			return;
 		}
+	}
+	
+	private static void parseMailConfig() {
+		JSONParser parser = new JSONParser();
+        try (Reader reader = new FileReader("mail.json")) {
+        	JSONObject jsonMailConfig = (JSONObject) parser.parse(reader);
+        	
+        	String username = null;
+        	try {
+        		username = (String) jsonMailConfig.get("username");
+        		if(username == null || username.equals("")) {
+        			return;
+        		}
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	String password = null;
+        	try {
+        		password = (String) jsonMailConfig.get("password");
+        		if(password == null || password.equals("")) {
+        			return;
+        		}
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	String frommail = null;
+        	try {
+        		frommail = (String) jsonMailConfig.get("frommail");
+        		if(frommail == null || frommail.equals("")) {
+        			return;
+        		}
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	String tomail = null;
+        	try {
+        		tomail = (String) jsonMailConfig.get("tomail");
+        		if(tomail == null || tomail.equals("")) {
+        			return;
+        		}
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	boolean smtpauth = true;
+        	try {
+        		smtpauth = (Boolean) jsonMailConfig.get("smtpauth");        		
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	boolean starttls = true;
+        	try {
+        		starttls = (Boolean) jsonMailConfig.get("starttls");        		
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	String smtphost = null;
+        	try {
+        		smtphost = (String) jsonMailConfig.get("smtphost");
+        		if(smtphost == null || smtphost.equals("")) {
+        			return;
+        		}
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}
+        	
+        	long smtpport = 465;
+        	try {
+        		smtpport = (Long) jsonMailConfig.get("smtpport");        		
+        	} catch(NullPointerException | ClassCastException e) {/* keep default value */}   
+        }
+    	catch (FileNotFoundException e1) {        	
+        	return;
+		} catch (IOException e1) {			
+			return;
+		} catch (ParseException e) {			
+			return;
+		}    	
 	}
 }
