@@ -15,6 +15,9 @@ jobs:
       - restore_cache:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
+        name: ensure gradlew is executable...
+        command: chmod +x ./gradlew
+      - run:
           name: Rolling on chrome...
           command: |
             echo 'test'
