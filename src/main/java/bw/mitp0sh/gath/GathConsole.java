@@ -142,6 +142,11 @@ public class GathConsole {
 				    while((line = br.readLine()) != null) {  
 				    	line = line.strip();			    	
 				    	if(needNext && line.length() != 0) {
+				    		if(line.equals("-")) { // special case if release is still missing */
+				    			needNext = false;
+			    				continue;
+				    		}
+				    		
 				    		String group = line.split("\\/")[2];			    		
 				    		String tar = line.split("\\/")[3].split("\\\"")[0];
 				    		String relPath = line.split("\\\"")[1];
