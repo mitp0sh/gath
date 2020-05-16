@@ -1,9 +1,6 @@
 version: 2
 jobs:
   build:        
-    filters:
-      tags:
-        only: /^\d+\.\d+\.\d+$/
     working_directory: ~/gath
     environment:      
       _JAVA_OPTIONS: "-Xmx3g -Djdk.module.illegalAccess=deny"
@@ -25,10 +22,20 @@ jobs:
           command: |
             echo "There we go..."
             ./gradlew build
+  test:
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+    steps:
+      - run:
+        name: EntryPoint for tests
+        command: ls -la
 
 workflows:
   version: 2
-  main:
+  untagged-build:
+    jobs:
+      - test
+  tagged-build:
     jobs:
       - build:
           filters:
