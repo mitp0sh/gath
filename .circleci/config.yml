@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:        
+    filters:
+      tags:
+        only: /^\d+\.\d+\.\d+$/
     working_directory: ~/gath
     environment:      
       _JAVA_OPTIONS: "-Xmx3g -Djdk.module.illegalAccess=deny"
