@@ -22,17 +22,12 @@ jobs:
           command: |
             echo "There we go..."
             ./gradlew build
-            pwd
-            ls -la
-            cd build
-            ls -la
-            cd libs
-            ls -la
-            chmod +x ./gath.jar
-            java -jar ./gath.jar
 
 workflows:
   version: 2
-  build:
+  main:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/

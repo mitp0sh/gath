@@ -1,19 +1,37 @@
 {
     "root": "https://opensource.apple.com",
-    "interval": 6,
+    "interval": 15,
     "products":[ 
+        "https://opensource.apple.com/release/macos-1015.html", 
+        "https://opensource.apple.com/release/macos-10151.html", 
         "https://opensource.apple.com/release/macos-10152.html", 
-        "https://opensource.apple.com/release/macos-10151.html"         
+        "https://opensource.apple.com/release/macos-10153.html",        
+        "https://opensource.apple.com/release/macos-10144.html",         
+        "https://opensource.apple.com/release/macos-10143.html",
+        "https://opensource.apple.com/release/macos-10142.html"
     ],
     "ignore-components":false,
     "components":[
-        {"macos-10152": [
-            "xnu",
-            "IOFireWireAVC"
+        {"macos-1015": [
+            "xnu"            
         ]},
         {"macos-10151": [
-            "IOKitUser",
-            "IOFireWireIP"
+            "xnu"
+        ]},
+        {"macos-10152": [
+            "xnu"            
+        ]},
+        {"macos-10153": [
+            "xnu"
+        ]},
+        {"macos-10142": [
+            "xnu"            
+        ]},
+        {"macos-10143": [
+            "xnu"
+        ]},
+        {"macos-10144": [
+            "xnu"            
         ]}
     ]
 }
