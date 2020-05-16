@@ -51,6 +51,13 @@ public class GathConsole {
 	
 	public static void main(String[] args) {
 		
+		if(args != null && args.length == 1) {
+			if(args[0].equals("--version")) {
+				System.out.println(new Versioning());
+				return;
+			}
+		}
+		
 		System.out.println("GATH, Golden Apple Tree Harvester v0.1 by mitp0sh[PDX]");
 		System.out.println("Copyright 2020, All rights unreserved.");
 		System.out.println("https://twitch.tv/mitp0sh_of_pdx | mitp0sh@mitp0sh.de\n");
