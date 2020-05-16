@@ -32,7 +32,7 @@ jobs:
 
 workflows:
   version: 2
-  tagged-build:
+  untagged-build:
     jobs:
       - build
   tagged-build:
