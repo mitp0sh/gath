@@ -24,6 +24,8 @@ jobs:
             VERSION=$(java -jar ./build/libs/gath.jar --version)
             echo $VERSION > /tmp/gath.current.version
             echo "Current Version: "$VERSION
+      - store_artifacts:
+          path: /tmp/gath.current.version
 
   j-test:
     docker:
