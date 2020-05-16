@@ -22,7 +22,7 @@ jobs:
           command: |            
             ./gradlew build
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            $VERSION > /tmp/gath.current.version
+            echo $VERSION > /tmp/gath.current.version
             echo "Current Version: "$VERSION
 
   j-test:
