@@ -43,7 +43,12 @@ jobs:
       - run:
           name: Deploy
           command: |
-            cat ./artifacts/tmp/gath.current.version
+            ls -la
+            cd ./artifacts
+            ls -la
+            cat ./gath.current.version
+            cd tmp
+            cat ./gath.current.version            
 
 workflows:
   version: 2
