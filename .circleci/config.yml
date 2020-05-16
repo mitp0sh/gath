@@ -22,8 +22,7 @@ jobs:
           command: |            
             ./gradlew build
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > /tmp/gath.current.version
-            echo "Current Version: "$VERSION
+            echo $VERSION > /tmp/gath.current.version            
       - store_artifacts:
           path: /tmp/gath.current.version
 
@@ -44,8 +43,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-            VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION
+            cat ./artifacts/tmp/gath.current.version
 
 workflows:
   version: 2
