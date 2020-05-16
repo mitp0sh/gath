@@ -22,7 +22,9 @@ jobs:
           command: |            
             ./gradlew build
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION
+            $VERSION > /tmp/gath.current.version
+            echo "Current Version: "$VERSION
+
   j-test:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
