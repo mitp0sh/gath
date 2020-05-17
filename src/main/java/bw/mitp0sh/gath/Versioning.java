@@ -3,7 +3,7 @@ package bw.mitp0sh.gath;
 public class Versioning {
 	protected static final short MAJOR_VERSION = 0;
 	protected static final short MINOR_VERSION = 0;
-	protected static final int PATCH_VERSION = 4;
+	protected static final int PATCH_VERSION = 5;
 	protected static final String TYPE = "alpha"; // allowed: alpha, beta, rc or empty
 	
 	@Override

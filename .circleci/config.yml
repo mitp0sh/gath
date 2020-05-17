@@ -17,14 +17,17 @@ jobs:
       - run:
           name: ensure gradlew is executable...
           command: chmod +x ./gradlew
+      - run: mkdir -p workspace          
       - run:
           name: Build
           command: |            
             ./gradlew build
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > /tmp/gath.current.version            
-      - store_artifacts:
-          path: /tmp/gath.current.version
+            echo $VERSION > workspace/gath.current.version
+      - persist_to_workspace:
+          root: workspace          
+          paths:
+            - gath.current.version
 
   j-test:
     docker:
@@ -39,17 +42,12 @@ jobs:
       - image: circleci/openjdk:11.0.3-jdk-stretch
     steps:
       - attach_workspace:
-          at: ./artifacts
+          at: /tmp/workspace
       - run:
           name: Deploy
-          command: |
-            ls -la
-            cd ./artifacts
-            ls -la
-            cat ./gath.current.version
-            cd tmp
-            cat ./gath.current.version            
-
+          command: |            
+            cat /tmp/workspace/gath.current.version
+            
 workflows:
   version: 2
   wf-build-test:
