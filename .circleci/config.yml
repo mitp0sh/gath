@@ -22,8 +22,15 @@ jobs:
           name: Build
           command: |            
             ./gradlew build
-            VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > workspace/gath.current.version            
+            export VERSION=$(java -jar ./build/libs/gath.jar --version)
+            echo $VERSION > workspace/gath.current.version   
+            cp ./build/libs/gath.jar ./build/libs/gath-$VERSION.jar
+      - store_artifacts:
+          path: workspace/gath.current.version
+          destination: gath.current.version  
+      - store_artifacts:
+          path: ./build/libs/gath.jar
+          destination: gath-$VERSION.jar       
       - persist_to_workspace:
           root: workspace          
           paths:
