@@ -25,7 +25,10 @@ jobs:
             VERSION=$(java -jar ./build/libs/gath.jar --version)
             cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
             cp ./config.json /tmp/artifacts/config.json
-            echo $VERSION > /tmp/artifacts/gath.current.version
+            tar czf gath-$VERSION.tar.gz /tmp/artifacts/
+            rm -rf /tmp/artifacts
+            mkdir -p /tmp/artifacts
+            gath-$VERSION.tar.gz /tmp/artifacts/            
       - store_artifacts:
           path: /tmp/artifacts
           destination: ./        
