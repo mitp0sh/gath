@@ -22,7 +22,7 @@ jobs:
           name: Build
           command: |            
             ~/gath/gradlew build                
-            VERSION=$(java -jar ~/gath/build/libs/gath.jar --version)
+            export VERSION=$(java -jar ~/gath/build/libs/gath.jar --version)
             cp ~/gath/build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
             cp ~/gath/config.json /tmp/artifacts
             cp ~/gath/README.md /tmp/artifacts
@@ -35,6 +35,8 @@ jobs:
             mkdir -p /tmp/artifacts
             cp ~/gath/gath-$VERSION.tar.gz /tmp/artifacts         
             cp ~/gath/gath-$VERSION.zip /tmp/artifacts
+            cp ~/gath/README.md /tmp/artifacts
+            cp ~/gath/HISTORY.md /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
           destination: ./        
@@ -51,15 +53,17 @@ jobs:
           command: ls -la
   j-deploy:
     docker:
-      - image: cibuilds/github:0.10
-      - image: circleci/openjdk:11.0.3-jdk-stretch
+      - image: cibuilds/github:0.10      
     steps:
       - attach_workspace:
           at: /tmp/artifacts
       - run:
           name: Deploy
           command: |            
-            cat /tmp/artifacts/gath.current.version
+            go get github.com/tcnksm/ghr
+            echo $VERSION
+            
+
 
 workflows:
   version: 2
