@@ -23,12 +23,12 @@ jobs:
           command: |            
             ./gradlew build
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > workspace/gath.current.version
+            echo $VERSION > workspace/gath.current.version            
       - persist_to_workspace:
           root: workspace          
           paths:
             - gath.current.version
-
+            - build/libs/gath.jar
   j-test:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
@@ -47,7 +47,7 @@ jobs:
           name: Deploy
           command: |            
             cat /tmp/workspace/gath.current.version
-            
+
 workflows:
   version: 2
   wf-build-test:
