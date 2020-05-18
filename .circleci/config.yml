@@ -31,7 +31,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/artifacts          
           paths:            
-            - *
+            - ./*
   j-test:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
