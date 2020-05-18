@@ -22,9 +22,9 @@ jobs:
           name: Build
           command: |            
             ./gradlew build            
-            cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar
             VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > /tmp/artifacts/gath.current.version               
+            cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
+            echo $VERSION > /tmp/artifacts/gath.current.version
       - store_artifacts:
           path: /tmp/artifacts
           destination: ./        
