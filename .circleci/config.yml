@@ -29,7 +29,7 @@ jobs:
             cp ./HISTORY.md /tmp/artifacts
             cd /tmp/artifacts/
             tar cvzf ./gath-$VERSION.tar.gz *
-            zip -r gath-$VERSION.zip *
+            zip -r ./gath-$VERSION.zip *
             cd -
             rm -rf /tmp/artifacts
             mkdir -p /tmp/artifacts
