@@ -22,7 +22,7 @@ jobs:
           name: Build
           command: |            
             ~/gath/gradlew build                
-            export VERSION=$(java -jar ~/gath/build/libs/gath.jar --version)
+            VERSION=$(java -jar ~/gath/build/libs/gath.jar --version)
             cp ~/gath/build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
             cp ~/gath/config.json /tmp/artifacts
             cp ~/gath/README.md /tmp/artifacts
@@ -37,6 +37,7 @@ jobs:
             cp ~/gath/gath-$VERSION.zip /tmp/artifacts
             cp ~/gath/README.md /tmp/artifacts
             cp ~/gath/HISTORY.md /tmp/artifacts
+            echo $VERSION > /tmp/artifacts/ver.txt
       - store_artifacts:
           path: /tmp/artifacts
           destination: ./        
@@ -61,9 +62,8 @@ jobs:
           name: Deploy
           command: |            
             go get github.com/tcnksm/ghr
+            VERSION=`cat ver.txt`
             echo $VERSION
-            
-
 
 workflows:
   version: 2
