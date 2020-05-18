@@ -21,7 +21,8 @@ jobs:
       - run:
           name: Build
           command: |            
-            ./gradlew build            
+            ./gradlew build    
+            ls -la        
             VERSION=$(java -jar ./build/libs/gath.jar --version)
             cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
             echo $VERSION > /tmp/artifacts/gath.current.version
