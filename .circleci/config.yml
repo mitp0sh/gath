@@ -21,22 +21,20 @@ jobs:
       - run:
           name: Build
           command: |            
-            root=${pwd}
-            echo $root
-            ./gradlew build                
-            VERSION=$(java -jar ./build/libs/gath.jar --version)
-            cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
-            cp ./config.json /tmp/artifacts
-            cp ./README.md /tmp/artifacts
-            cp ./HISTORY.md /tmp/artifacts
-            cd /tmp/artifacts/
-            tar cvzf ./gath-$VERSION.tar.gz *
-            zip -r ./gath-$VERSION.zip *
+            ~/gath/gradlew build                
+            VERSION=$(java -jar ~/gath/build/libs/gath.jar --version)
+            cp ~/gath/build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
+            cp ~/gath/config.json /tmp/artifacts
+            cp ~/gath/README.md /tmp/artifacts
+            cp ~/gath/HISTORY.md /tmp/artifacts
+            cd /tmp/artifacts
+            tar cvzf ~/gath/gath-$VERSION.tar.gz *
+            zip -r ~/gath/gath-$VERSION.zip *
             cd -
             rm -rf /tmp/artifacts
             mkdir -p /tmp/artifacts
-            cp gath-$VERSION.tar.gz /tmp/artifacts         
-            cp gath-$VERSION.zip /tmp/artifacts         
+            cp ~/gath/gath-$VERSION.tar.gz /tmp/artifacts         
+            cp ~/gath/gath-$VERSION.zip /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
           destination: ./        
