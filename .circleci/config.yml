@@ -17,25 +17,21 @@ jobs:
       - run:
           name: ensure gradlew is executable...
           command: chmod +x ./gradlew
-      - run: mkdir -p workspace          
+      - run: mkdir -p /tmp/artifacts
       - run:
           name: Build
           command: |            
-            ./gradlew build
+            ./gradlew build            
+            cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar
             export VERSION=$(java -jar ./build/libs/gath.jar --version)
-            echo $VERSION > workspace/gath.current.version   
-            cp ./build/libs/gath.jar ./build/libs/gath-$VERSION.jar
+            echo $VERSION > /tmp/artifacts/gath.current.version               
       - store_artifacts:
-          path: workspace/gath.current.version
-          destination: gath.current.version  
-      - store_artifacts:
-          path: ./build/libs/gath.jar
-          destination: gath-$VERSION.jar       
+          path: /tmp/artifacts
+          destination: ./        
       - persist_to_workspace:
-          root: workspace          
-          paths:
-            - gath.current.version
-            - build/libs/gath.jar
+          root: /tmp/artifacts          
+          paths:            
+            - *
   j-test:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
@@ -49,11 +45,11 @@ jobs:
       - image: circleci/openjdk:11.0.3-jdk-stretch
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/artifacts
       - run:
           name: Deploy
           command: |            
-            cat /tmp/workspace/gath.current.version
+            cat /tmp/artifacts/gath.current.version
 
 workflows:
   version: 2
