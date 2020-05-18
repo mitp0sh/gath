@@ -63,7 +63,8 @@ jobs:
           command: |            
             go get github.com/tcnksm/ghr
             VERSION=`cat /tmp/artifacts/ver.txt`
-            echo $VERSION
+            rm /tmp/artifacts/ver.txt
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/artifacts/
 
 workflows:
   version: 2
