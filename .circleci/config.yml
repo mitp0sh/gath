@@ -21,6 +21,8 @@ jobs:
       - run:
           name: Build
           command: |            
+            root=${pwd}
+            echo $root
             ./gradlew build                
             VERSION=$(java -jar ./build/libs/gath.jar --version)
             cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
