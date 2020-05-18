@@ -23,7 +23,7 @@ jobs:
           command: |            
             ./gradlew build            
             cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar
-            export VERSION=$(java -jar ./build/libs/gath.jar --version)
+            VERSION=$(java -jar ./build/libs/gath.jar --version)
             echo $VERSION > /tmp/artifacts/gath.current.version               
       - store_artifacts:
           path: /tmp/artifacts
