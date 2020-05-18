@@ -21,10 +21,10 @@ jobs:
       - run:
           name: Build
           command: |            
-            ./gradlew build    
-            ls -la        
+            ./gradlew build                
             VERSION=$(java -jar ./build/libs/gath.jar --version)
             cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
+            cp ./config.json /tmp/artifacts/config.json
             echo $VERSION > /tmp/artifacts/gath.current.version
       - store_artifacts:
           path: /tmp/artifacts
