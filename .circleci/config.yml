@@ -21,15 +21,15 @@ jobs:
       - run:
           name: Build
           command: |            
-            ~/gradlew build                
-            VERSION=$(java -jar ~/build/libs/gath.jar --version)
-            cp ~/build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
-            cp ~/config.json /tmp/artifacts
-            cp ~/README.md /tmp/artifacts
-            cp ~/HISTORY.md /tmp/artifacts
+            ./gradlew build                
+            VERSION=$(java -jar ./build/libs/gath.jar --version)
+            cp ./build/libs/gath.jar /tmp/artifacts/gath-$VERSION.jar            
+            cp ./config.json /tmp/artifacts
+            cp ./README.md /tmp/artifacts
+            cp ./HISTORY.md /tmp/artifacts
             cd /tmp/artifacts/
-            tar ~/cvzf gath-$VERSION.tar.gz *
-            zip -r ~/cvzf gath-$VERSION.zip *
+            tar cvzf ./gath-$VERSION.tar.gz *
+            zip -r gath-$VERSION.zip *
             cd -
             rm -rf /tmp/artifacts
             mkdir -p /tmp/artifacts
