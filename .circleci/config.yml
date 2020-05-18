@@ -64,12 +64,12 @@ jobs:
             go get github.com/tcnksm/ghr
             VERSION=`cat /tmp/artifacts/ver.txt`
             rm /tmp/artifacts/ver.txt
-            echo ${GATH_BUILD}
+            echo ${GITHUB_TOKEN}
             echo ${CIRCLE_PROJECT_USERNAME}
             echo ${CIRCLE_PROJECT_REPONAME}
             echo ${CIRCLE_SHA1}
             echo ${VERSION}
-            ghr -t ${GATH_BUILD} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/artifacts/
 
 workflows:
   version: 2
